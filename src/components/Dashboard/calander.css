@@ -1,0 +1,51 @@
+/* CalendarPage.css */
+ .fc-toolbar {
+    border-bottom: 1px solid #0B192C;
+    width: 60vw;
+    font-weight: 200;
+  }
+
+  .fc-toolbar h2 {
+    color: #FF6500;
+    font-weight: 400; /* Change header text color */
+  }
+  
+  .fc-daygrid-event {
+    background-color: #FF6500;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 2px 4px;
+  }
+
+  .fc-daygrid-event:hover {
+    background-color: #d13901; /* Change hover background color */
+  }
+
+  .fc-daygrid-day {
+    border: 1px solid #0B192C; /* Change this to your desired border color */
+    background-color: #fcfcfc;
+    
+   }
+  
+  .fc-daygrid-day {
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid #0B192C;
+  }
+  
+  .fc-event-title {
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+
+  :root {
+    --fc-border-color: #0B192C;
+    --fc-daygrid-event-dot-width: 5px;
+
+    --fc-button-text-color: #fff;
+    --fc-button-bg-color: #0B192C;
+    --fc-button-hover-bg-color: #1e2b37;
+  }
+
+  
