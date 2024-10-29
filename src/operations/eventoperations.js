@@ -45,11 +45,14 @@ export function createEvent(title, description, start, end, location, reminderTi
 
     return async () => {
         const token = JSON.parse(localStorage.getItem("token"));
+        console.log(CREATE_EVENT_API)
+        console.log(token)
         try {
             const response = await apiConnector("POST", CREATE_EVENT_API,
                 { title, description, start, end, location, reminderTime, recurring, recurrencePattern },
-                { Authorization: `Bearer ${token}` }
-            );
+                {
+                    Authorization: `Bearer ${token}`,
+                });
 
             if (!response.data.success) {
                 throw new Error(response.data.message);

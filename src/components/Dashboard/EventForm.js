@@ -211,10 +211,36 @@ const EventForm = () => {
     });
   };
 
+  function createFullReminderDate(selectedDate, reminderTime) {
+    // Assuming selectedDate is a valid date string (e.g., "2024-10-29T20:56:00Z")
+    // If selectedDate is not valid, we need to handle that
+    const date = new Date(selectedDate);
+
+    // If selectedDate is not a valid date, fallback to today's date
+    if (isNaN(date.getTime())) {
+        const today = new Date();
+        date.setFullYear(today.getFullYear(), today.getMonth(), today.getDate());
+    }
+
+    // Parse the reminder time which is assumed to be in "HH:mm" format
+    const [hours, minutes] = reminderTime.split(":").map(Number);
+    
+    // Set hours and minutes to the date object
+    date.setHours(hours, minutes, 0, 0);
+
+    console.log("SelectedDate:", selectedDate);
+    console.log("reminderTime:", reminderTime);
+    console.log("Date created:", date);
+    return date;
+}
+
+
   const createEventHanler = async (e) => {
     e.preventDefault();
     console.log("------------Event data ----------");
     console.log(eventFormData);
+
+    const reminderTime = createFullReminderDate(selectedDate, eventFormData.reminderTime)
 
     try {
         const res = await createEvent(
@@ -223,7 +249,7 @@ const EventForm = () => {
           eventFormData.start,
           eventFormData.end,
           eventFormData.location,
-          eventFormData.reminderTime,
+          reminderTime.toDateString,
           eventFormData.recurring,
           eventFormData.recurrencePattern
         )();
@@ -243,6 +269,9 @@ const EventForm = () => {
     console.log("------------Meeting data ----------");
     console.log(meetingFormData)
 
+    const reminderTime = createFullReminderDate(selectedDate, eventFormData.reminderTime)
+
+
     try {
         const res = await createMeeting(
           meetingFormData.title,
@@ -251,7 +280,7 @@ const EventForm = () => {
           meetingFormData.end,
           meetingFormData.location,
           meetingFormData.meetingLink,
-          meetingFormData.reminderTime,
+          reminderTime.toDateString,
         )();
         await fetchUserDetails()
         // setCalendarEvents((prevEvents) => [...prevEvents, meetingFormData]);
