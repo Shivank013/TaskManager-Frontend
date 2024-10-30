@@ -22,8 +22,6 @@ export default function AppContextProvider ({children}) {
       return savedToken ? JSON.parse(savedToken) : null;
     });
 
-
-
     const value = {
         token, setToken,
         user, setUser,

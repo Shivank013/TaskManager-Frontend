@@ -3,13 +3,13 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import EventForm from "./EventForm";
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { AppContext } from '../../context/AppContext';
 import './calander.css';
 import { getUserDetails } from "../../operations/useroperations";
 
 export default function CalendarPage() {
-    const { setSelectedDate, addevent, selecteEvent, setSelecteEvent, setAddevent, calendarEvents, setCalendarEvents } = useContext(AppContext);
+    const { setSelectedDate, addevent, setSelecteEvent, setAddevent, calendarEvents, setCalendarEvents } = useContext(AppContext);
 
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -50,7 +50,7 @@ export default function CalendarPage() {
         console.log("Event:", event);
         console.log("Event ID:", event.id); 
         console.log("Extended Props:", event.extendedProps); 
-        setSelecteEvent(event);  // This should now carry the correct id and extendedProps
+        setSelecteEvent(event);  
         setAddevent(true);    
     };
 
